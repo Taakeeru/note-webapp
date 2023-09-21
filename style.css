@@ -1,4 +1,20 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'); */
+/* poppins-200 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../fonts/poppins-v20-latin-200.woff2') format('woff2'); 
+}
+
+/* poppins-300 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/poppins-v20-latin-300.woff2') format('woff2'); 
+}
 
 /* poppins-regular - latin */
 @font-face {
@@ -82,6 +98,7 @@
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     outline: none;
+    height: 45px;
   }
 
   .header-input {
@@ -111,6 +128,7 @@
 
   .searchbar {
     display: flex;
+    height: 45px;
   }
 
   .after-searchbar {
@@ -140,6 +158,11 @@
     margin-right: 15px;
   }
 
+  #logo-title {
+    display: flex;
+    align-items: center;
+  }
+
   .header-profile {
     height: 40px;
     width: 40px;
@@ -156,16 +179,71 @@
 
   .main {
     display: flex;
-    width: 100%;
+    
   }
 
-  .side-bar {
+  .sidebar {
     display: flex;
-    width: 30%;
+    flex-direction: column;
+    width: 20%;
+    margin-top: 10px;
+    min-height: 100vh;
+  }
+
+  .sideBarStyle {
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    align-items: center;
+    padding: 20px 30px;
+    height: 10px;
+    background-color: #FEEFC3;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
+  .sideBarStyle img {
+    height: 25px;
+    width: auto;
+    margin-right: 35px;
+  }
+
+  .note,
+  .trashbin {
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    align-items: center;
+    padding: 20px 30px;
+    height: 10px;
+  }
+
+  .note:hover,
+  .trashbin:hover {
+    background-color: #F1F3F4;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    cursor: pointer;
+  }
+
+
+  .note img,
+  .trashbin img {
+    height: 25px;
+    width: auto;
+    margin-right: 35px;
   }
 
   .content-container {
     display: flex;
+    justify-content: center;
     width: 80%;
   }
+
+  .card {
+    /* border: 1px outset #efefef; */
+    box-shadow: 0px 2px 2px 0px rgba(44, 44, 44, 0.164);
+    padding: 8px;
+    margin-bottom: 32px;
+}
 

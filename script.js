@@ -47,12 +47,11 @@ function renderNote() {
   let content = document.getElementById("content");
 
   content.innerHTML = "";
-  content.innerHTML += `<h1>Notizen</h1>`;
   content.innerHTML += /*html*/ `
-    <div>
-        <input placeholder="Titel" id="name">
+    <div class="messageBox">
+        <!-- <input placeholder="Titel" id="name"> -->
         <input placeholder="Notiz" id="phone">
-        <button onclick="addContact()">Hinzufügen</button>
+        <!-- <button onclick="addContact()">Hinzufügen</button> -->
     </div>`;
 
   for (let i = 0; i < noteTitle.length; i++) {
@@ -73,7 +72,12 @@ function renderTrashbin() {
   let content = document.getElementById("content");
 
   content.innerHTML = "";
-  content.innerHTML += `<h1>Papierkorb</h1>`;
+  content.innerHTML += /*html*/`
+  <div class="clearTrashbin">
+  <span>Notizen im Papierkorb werden nach sieben Tagen gelöscht.</span>
+  <button id="clearTrashbin">Papierkorb leeren</button>
+  </div>`;
+
   content.innerHTML += /*html*/ `
     <div>
         <input placeholder="Titel" id="name">

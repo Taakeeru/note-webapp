@@ -9,7 +9,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body>
+  <body onload="renderNote()">
     <header>
       <div class="header">
         <img src="./img/menu.svg" class="header-icons" alt="Icon" />
@@ -64,6 +64,7 @@
       </div>
 
       <div class="content-container" onclick="oldStyle()">
+        <div class="messageContent" id="messageContent"></div>
         <div id="content"></div>
       </div>
     </div>

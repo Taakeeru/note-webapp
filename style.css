@@ -114,6 +114,7 @@
     background-color: white;
     outline: none;
     box-shadow: 2px 2px 2px 0px rgba(44, 44, 44, 0.3);
+    z-index: 5;
   }
 
   .header input::placeholder {
@@ -180,7 +181,6 @@
 
   .main {
     display: flex;
-    
   }
 
   .sidebar {
@@ -237,7 +237,7 @@
 
   .content-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     width: 80%;
     margin: 0px 40px;
   }
@@ -276,21 +276,49 @@
     cursor: pointer;
   }
 
-  .messageBox {
+  .messageContent {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    align-items: center;
   }
 
-  .messageBox input {
-    height: 40px;
-    width: 40%;
+  .messageBox1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 40px;
+    margin-bottom: 40px;
     border: 1px solid rgba(0,0,0,.20);
     border-radius: 8px;
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+    z-index: 99 !important;
+    padding: 5px 10px;
+  }
+
+  .messageBox1 input {
+    height: 40px;
+    width: 100%;
     outline: none;
+    border: none;
+  }
+
+  .messageBtn {
+    display: flex;
+    justify-content: end;
+  }
+
+  .messageBox2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(0,0,0,.20);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
   }
 
   .card {

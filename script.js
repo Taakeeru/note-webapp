@@ -8,11 +8,13 @@ load();
 function newStyle() {
   document.getElementById("searchbarBtn").classList.add("newStyle");
   document.getElementById("searchbar").classList.add("newStyle");
+  console.log('added');
 }
 
 function oldStyle() {
   document.getElementById("searchbarBtn").classList.remove("newStyle");
   document.getElementById("searchbar").classList.remove("newStyle");
+  console.log('removed');
 }
 
 function trashbinContent() {
@@ -43,15 +45,43 @@ function noteContent() {
         <h1>Notizen</h1>`;
 }
 
+
+function addContentToMessageBox() {
+  let messageTitle = document.getElementById("addTitle");
+  let messageBtn = document.getElementById("addBtn");
+
+  messageTitle.innerHTML = "";
+  messageTitle.innerHTML += /*html*/ `
+    <input placeholder="Titel" id="name">`
+
+  messageBtn.innerHTML = "";
+  messageBtn.innerHTML += /*html*/`
+    <button onclick="addContact()">Speichern</button>`
+}
+
+
+function messageBox1() {
+  let messageBox2 = document.getElementById("messageContent");
+
+  messageBox2.innerHTML = "";
+  messageBox2.innerHTML += /*html*/ `
+    <div class="messageBox1" id="messageBox1" onclick="messageBox2()">
+        <input placeholder="Notiz" id="phone">   
+    </div>`
+}
+
+
 function renderNote() {
   let content = document.getElementById("content");
+  let messageContent = document.getElementById("messageContent");
 
   content.innerHTML = "";
-  content.innerHTML += /*html*/ `
-    <div class="messageBox">
-        <!-- <input placeholder="Titel" id="name"> -->
-        <input placeholder="Notiz" id="phone">
-        <!-- <button onclick="addContact()">Hinzufügen</button> -->
+  messageContent.innerHTML = "";
+  messageContent.innerHTML += /*html*/ `
+    <div class="messageBox1" id="messageBox1">
+        <div class="messageTitle" id="addTitle"><!-- <input placeholder="Titel" id="name"> --></div>
+        <input placeholder="Notiz" id="phone" onclick="addContentToMessageBox()">
+        <div class="messageBtn" id="addBtn"><!-- <button onclick="addContact()">Hinzufügen</button> --></div>
     </div>`;
 
   for (let i = 0; i < noteTitle.length; i++) {
@@ -69,33 +99,16 @@ function renderNote() {
 }
 
 function renderTrashbin() {
-  let content = document.getElementById("content");
+  let messageContent = document.getElementById("messageContent");
 
-  content.innerHTML = "";
-  content.innerHTML += /*html*/`
-  <div class="clearTrashbin">
-  <span>Notizen im Papierkorb werden nach sieben Tagen gelöscht.</span>
-  <button id="clearTrashbin">Papierkorb leeren</button>
-  </div>`;
-
-  content.innerHTML += /*html*/ `
-    <div>
-        <input placeholder="Titel" id="name">
-        <input placeholder="Notiz" id="phone">
-        <button onclick="addContact()">Hinzufügen</button>
+  messageContent.innerHTML = "";
+  messageContent.innerHTML += /*html*/`
+    <div class="clearTrashbin">
+      <span>Notizen im Papierkorb werden nach sieben Tagen gelöscht.</span>
+      <button id="clearTrashbin">Papierkorb leeren</button>
     </div>`;
 
-  for (let i = 0; i < noteTitle.length; i++) {
-    const name = noteTitle[i];
-    const phoneNumber = noteText[i];
-
-    content.innerHTML += /*html*/ `
-        <div class="card">
-            <b>${name}</b> <br>
-            ${phoneNumber} <br>
-            <button onclick="deleteContact(${i})">Löschen</button>
-        </div>`;
-  }
+  
   trashbinContent();
 }
 
@@ -107,7 +120,6 @@ function addContact() {
   noteText.push(phone.value);
 
   renderNote();
-  renderTrashbin();
   save();
 }
 
@@ -116,7 +128,6 @@ function deleteContact(i) {
   noteText.splice(i, 1);
 
   renderNote();
-  renderTrashbin();
   save();
 }
 

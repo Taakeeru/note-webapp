@@ -18,7 +18,7 @@
           <h1>Notizen</h1>
         </div>
         <div class="header-right">
-          <div class="searchbar">
+          <div class="searchbar" onmouseleave="oldStyle()">
             <button id="searchbarBtn" class="header-button">
               <img src="./img/search.svg" class="header-icons" alt="Icon" />
             </button>
@@ -63,9 +63,9 @@
         </div>
       </div>
 
-      <div class="content-container" onclick="oldStyle()">
+      <div class="content-container">
         <div class="messageContent" id="messageContent"></div>
-        <div id="content"></div>
+        <div class="content" id="content"></div>
       </div>
     </div>
   </body>

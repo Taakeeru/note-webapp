@@ -50,17 +50,12 @@ function addContentToMessageBox() {
   let messageTitle = document.getElementById("addTitle");
   let messageBtn = document.getElementById("addBtn");
 
-  messageTitle.innerHTML = "";
-  messageTitle.innerHTML += /*html*/ `
-    <input placeholder="Titel" id="name">`
-
-  messageBtn.innerHTML = "";
-  messageBtn.innerHTML += /*html*/`
-    <button onclick="addContact()">Speichern</button>`
+  messageTitle.classList.remove("d-none") 
+  messageBtn.classList.remove("d-none")
 }
 
 
-function messageBox1() {
+function removeContentFromMessageBox() {
   let messageBox2 = document.getElementById("messageContent");
 
   messageBox2.innerHTML = "";
@@ -71,6 +66,16 @@ function messageBox1() {
 }
 
 
+function addCardHover() {
+
+}
+
+
+function deleteCardHover() {
+
+}
+
+
 function renderNote() {
   let content = document.getElementById("content");
   let messageContent = document.getElementById("messageContent");
@@ -78,21 +83,40 @@ function renderNote() {
   content.innerHTML = "";
   messageContent.innerHTML = "";
   messageContent.innerHTML += /*html*/ `
-    <div class="messageBox1" id="messageBox1">
-        <div class="messageTitle" id="addTitle"><!-- <input placeholder="Titel" id="name"> --></div>
-        <input placeholder="Notiz" id="phone" onclick="addContentToMessageBox()">
-        <div class="messageBtn" id="addBtn"><!-- <button onclick="addContact()">Hinzufügen</button> --></div>
-    </div>`;
+      <div
+        class="messageBox1"
+        id="messageBox1"
+        onclick="addContentToMessageBox()"
+        onmouseleave="renderNote()"
+      >
+        <div class="messageTitle d-none" id="addTitle">
+          <textarea placeholder="Titel" id="name"></textarea>
+        </div>
+        <textarea
+          type="text"
+          cols="40"
+          rows="2"
+          placeholder="Notiz schreiben..."
+          id="phone"
+        ></textarea>
+        <div class="messageBtn d-none" id="addBtn">
+          <button class="messageBtn" onclick="addContact()">Speichern</button>
+        </div>
+      </div>`;
 
   for (let i = 0; i < noteTitle.length; i++) {
     const name = noteTitle[i];
     const phoneNumber = noteText[i];
 
     content.innerHTML += /*html*/ `
-        <div class="card">
-            <b>${name}</b> <br>
-            ${phoneNumber} <br>
-            <button onclick="deleteContact(${i})">Löschen</button>
+        <div class="card" onmouseover="addCardHover()" onmouseout="deleteCardHover()"> <!-- //dran denken für hover effekt!! -->
+            <div class="cardTitleNote" id="cardTitleNote">
+              <b>${name}</b> <br>
+              ${phoneNumber} <br>
+            </div>
+            <div class="cardBtn" id="cardBtn">
+              <button onclick="deleteContact(${i})"><img src="./img/delete.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
+            </div>
         </div>`;
   }
   noteContent();

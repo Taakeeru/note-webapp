@@ -127,7 +127,7 @@ function renderTrashbin() {
   messageContent.innerHTML += /*html*/ `
     <div class="clearTrashbin">
       <span>Notizen im Papierkorb werden nach sieben Tagen gelöscht.</span>
-      <button id="clearTrashbin">Papierkorb leeren</button>
+      <button id="clearTrashbin" onclick="deleteTrashbin()">Papierkorb leeren</button>
     </div>`;
 
   for (let i = 0; i < trashbinNoteTitles.length; i++) {
@@ -141,7 +141,7 @@ function renderTrashbin() {
               ${trashbinNoteText} <br>
             </div>
             <div class="cardBtn" id="cardBtn">
-              <button onclick=""><img src="./img/shift.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
+              <button onclick="restoreNote(${i})"><img src="./img/shift.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
             </div>
         </div>`;
   }  
@@ -154,6 +154,7 @@ function addNote() {
 
   noteTitles.push(noteTitle.value);
   noteTexts.push(noteText.value);
+
   trashbinNoteTitles.splice()
   trashbinNoteTexts.splice()
 
@@ -162,18 +163,35 @@ function addNote() {
 }
 
 function deleteNote(i) {
-  let test = noteTitles.splice(i, 1)
-  let test2 = noteTexts.splice(i, 1)
+  trashbinNoteTitles.push(noteTitles[i]);
+  trashbinNoteTexts.push(noteTexts[i]);
 
   noteTitles.splice(i, 1);
   noteTexts.splice(i, 1);
-  trashbinNoteTitles.push(test.value);
-  trashbinNoteTexts.push(test2.value);
+  
 
   renderNote(); //if statment für renderNote oder renderTrashbin
   save();
 }
 
+function restoreNote(i) {
+  noteTitles.push(trashbinNoteTitles[i]);
+  noteTexts.push(trashbinNoteTexts[i]);
+
+  trashbinNoteTitles.splice(i, 1);
+  trashbinNoteTexts.splice(i, 1);
+
+  renderTrashbin();
+  save();
+}
+
+function deleteTrashbin() {
+  let content = document.getElementById("content");
+
+  content.innerHTML = "";
+  return trashbinNoteTitles = [],
+         trashbinNoteTexts = []
+}
 
 
 function save() {

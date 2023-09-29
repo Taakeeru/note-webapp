@@ -3,18 +3,20 @@ let noteTexts = [
   "250g Spaghetti, 1 Glas Barilla-Tomatensauce",
   "20min Cardio, 45min Kraft",
 ];
+let trashbinNoteTitles = ["test1"];
+let trashbinNoteTexts = ["testtext bla bla"];
 load();
 
 function newStyle() {
   document.getElementById("searchbarBtn").classList.add("newStyle");
   document.getElementById("searchbar").classList.add("newStyle");
-  console.log('added');
+  console.log("added");
 }
 
 function oldStyle() {
   document.getElementById("searchbarBtn").classList.remove("newStyle");
   document.getElementById("searchbar").classList.remove("newStyle");
-  console.log('removed');
+  console.log("removed");
 }
 
 function trashbinContent() {
@@ -26,7 +28,6 @@ function trashbinContent() {
   document.getElementById("note").classList.remove("sideBarStyle");
   document.getElementById("note").classList.add("note");
 
-  content.innerHTML = "";
   logoTitle.innerHTML = "";
   logoTitle.innerHTML += /*html*/ `
         <img src="./img/delete.svg" class="header-logo" alt="Logo" />
@@ -47,17 +48,15 @@ function noteContent() {
         <h1>Notizen</h1>`;
 }
 
-
 function addContentToMessageBox() {
   let messageTitle = document.getElementById("addTitle");
   let messageBtn = document.getElementById("addBtn");
   let messageBox = document.getElementById("messageBox1");
 
-  messageTitle.classList.remove("d-none") 
-  messageBtn.classList.remove("d-none")
-  messageBox.classList.add("margin10")
+  messageTitle.classList.remove("d-none");
+  messageBtn.classList.remove("d-none");
+  messageBox.classList.add("margin10");
 }
-
 
 // function removeContentFromMessageBox() {
 //   let messageBox2 = document.getElementById("messageContent");
@@ -65,20 +64,13 @@ function addContentToMessageBox() {
 //   messageBox2.innerHTML = "";
 //   messageBox2.innerHTML += /*html*/ `
 //     <div class="messageBox1" id="messageBox1" onclick="messageBox2()">
-//         <input placeholder="Notiz" id="phone">   
+//         <input placeholder="Notiz" id="noteText">
 //     </div>`
 // }
 
+function addCardHover() {}
 
-function addCardHover() {
-
-}
-
-
-function deleteCardHover() {
-
-}
-
+function deleteCardHover() {}
 
 function renderNote() {
   let content = document.getElementById("content");
@@ -94,32 +86,32 @@ function renderNote() {
         onmouseleave="renderNote()"
       >
         <div class="messageTitle d-none" id="addTitle">
-          <textarea placeholder="Titel" id="name"></textarea>
+          <textarea placeholder="Titel" id="noteTitle"></textarea>
         </div>
         <textarea
           type="text"
           cols="40"
           rows="2"
           placeholder="Notiz schreiben..."
-          id="phone"
+          id="noteText"
         ></textarea>
         <div class="messageBtn d-none" id="addBtn">
-          <button class="messageBtn" onclick="addContact()">Speichern</button>
+          <button class="messageBtn" onclick="addNote()">Speichern</button>
         </div>
       </div>`;
 
   for (let i = 0; i < noteTitles.length; i++) {
-    const name = noteTitles[i];
-    const phoneNumber = noteTexts[i];
+    const noteTitle = noteTitles[i];
+    const noteText = noteTexts[i];
 
     content.innerHTML += /*html*/ `
         <div class="card" onmouseover="addCardHover()" onmouseout="deleteCardHover()"> <!-- //dran denken für hover effekt!! -->
             <div class="cardTitleNote" id="cardTitleNote">
-              <b>${name}</b> <br>
-              ${phoneNumber} <br>
+              <b>${noteTitle}</b> <br>
+              ${noteText} <br>
             </div>
             <div class="cardBtn" id="cardBtn">
-              <button onclick="deleteContact(${i})"><img src="./img/delete.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
+              <button onclick="deleteNote(${i})"><img src="./img/delete.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
             </div>
         </div>`;
   }
@@ -127,37 +119,62 @@ function renderNote() {
 }
 
 function renderTrashbin() {
+  let content = document.getElementById("content");
   let messageContent = document.getElementById("messageContent");
 
+  content.innerHTML = "";
   messageContent.innerHTML = "";
-  messageContent.innerHTML += /*html*/`
+  messageContent.innerHTML += /*html*/ `
     <div class="clearTrashbin">
       <span>Notizen im Papierkorb werden nach sieben Tagen gelöscht.</span>
       <button id="clearTrashbin">Papierkorb leeren</button>
     </div>`;
 
-  
+  for (let i = 0; i < trashbinNoteTitles.length; i++) {
+    const trashbinNoteTitle = trashbinNoteTitles[i];
+    const trashbinNoteText = trashbinNoteTexts[i];
+
+    content.innerHTML += /*html*/ `
+        <div class="card" onmouseover="addCardHover()" onmouseout="deleteCardHover()"> <!-- //dran denken für hover effekt!! -->
+            <div class="cardTitleNote" id="cardTitleNote">
+              <b>${trashbinNoteTitle}</b> <br>
+              ${trashbinNoteText} <br>
+            </div>
+            <div class="cardBtn" id="cardBtn">
+              <button onclick=""><img src="./img/shift.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
+            </div>
+        </div>`;
+  }  
   trashbinContent();
 }
 
-function addContact() {
-  let name = document.getElementById("name");
-  let phone = document.getElementById("phone");
+function addNote() {
+  let noteTitle = document.getElementById("noteTitle");
+  let noteText = document.getElementById("noteText");
 
-  noteTitles.push(name.value);
-  noteTexts.push(phone.value);
+  noteTitles.push(noteTitle.value);
+  noteTexts.push(noteText.value);
+  trashbinNoteTitles.splice()
+  trashbinNoteTexts.splice()
 
-  renderNote();
+  renderNote(); //if statment für renderNote oder renderTrashbin
   save();
 }
 
-function deleteContact(i) {
+function deleteNote(i) {
+  let test = noteTitles.splice(i, 1)
+  let test2 = noteTexts.splice(i, 1)
+
   noteTitles.splice(i, 1);
   noteTexts.splice(i, 1);
+  trashbinNoteTitles.push(test.value);
+  trashbinNoteTexts.push(test2.value);
 
-  renderNote();
+  renderNote(); //if statment für renderNote oder renderTrashbin
   save();
 }
+
+
 
 function save() {
   let noteTitlesAsText = JSON.stringify(noteTitles);

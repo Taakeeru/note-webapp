@@ -1,5 +1,5 @@
-let noteTitle = ["Spaghetti Rezept", "Training"];
-let noteText = [
+let noteTitles = ["Spaghetti Rezept", "Training"];
+let noteTexts = [
   "250g Spaghetti, 1 Glas Barilla-Tomatensauce",
   "20min Cardio, 45min Kraft",
 ];
@@ -19,12 +19,14 @@ function oldStyle() {
 
 function trashbinContent() {
   let logoTitle = document.getElementById("logo-title");
+  let content = document.getElementById("content");
 
   document.getElementById("trashbin").classList.add("sideBarStyle");
   document.getElementById("trashbin").classList.remove("trashbin");
   document.getElementById("note").classList.remove("sideBarStyle");
   document.getElementById("note").classList.add("note");
 
+  content.innerHTML = "";
   logoTitle.innerHTML = "";
   logoTitle.innerHTML += /*html*/ `
         <img src="./img/delete.svg" class="header-logo" alt="Logo" />
@@ -49,21 +51,23 @@ function noteContent() {
 function addContentToMessageBox() {
   let messageTitle = document.getElementById("addTitle");
   let messageBtn = document.getElementById("addBtn");
+  let messageBox = document.getElementById("messageBox1");
 
   messageTitle.classList.remove("d-none") 
   messageBtn.classList.remove("d-none")
+  messageBox.classList.add("margin10")
 }
 
 
-function removeContentFromMessageBox() {
-  let messageBox2 = document.getElementById("messageContent");
+// function removeContentFromMessageBox() {
+//   let messageBox2 = document.getElementById("messageContent");
 
-  messageBox2.innerHTML = "";
-  messageBox2.innerHTML += /*html*/ `
-    <div class="messageBox1" id="messageBox1" onclick="messageBox2()">
-        <input placeholder="Notiz" id="phone">   
-    </div>`
-}
+//   messageBox2.innerHTML = "";
+//   messageBox2.innerHTML += /*html*/ `
+//     <div class="messageBox1" id="messageBox1" onclick="messageBox2()">
+//         <input placeholder="Notiz" id="phone">   
+//     </div>`
+// }
 
 
 function addCardHover() {
@@ -104,9 +108,9 @@ function renderNote() {
         </div>
       </div>`;
 
-  for (let i = 0; i < noteTitle.length; i++) {
-    const name = noteTitle[i];
-    const phoneNumber = noteText[i];
+  for (let i = 0; i < noteTitles.length; i++) {
+    const name = noteTitles[i];
+    const phoneNumber = noteTexts[i];
 
     content.innerHTML += /*html*/ `
         <div class="card" onmouseover="addCardHover()" onmouseout="deleteCardHover()"> <!-- //dran denken für hover effekt!! -->
@@ -140,35 +144,35 @@ function addContact() {
   let name = document.getElementById("name");
   let phone = document.getElementById("phone");
 
-  noteTitle.push(name.value);
-  noteText.push(phone.value);
+  noteTitles.push(name.value);
+  noteTexts.push(phone.value);
 
   renderNote();
   save();
 }
 
 function deleteContact(i) {
-  noteTitle.splice(i, 1);
-  noteText.splice(i, 1);
+  noteTitles.splice(i, 1);
+  noteTexts.splice(i, 1);
 
   renderNote();
   save();
 }
 
 function save() {
-  let noteTitleAsText = JSON.stringify(noteTitle);
-  let noteTextAsText = JSON.stringify(noteText);
+  let noteTitlesAsText = JSON.stringify(noteTitles);
+  let noteTextsAsText = JSON.stringify(noteTexts);
 
-  localStorage.setItem("noteTitle", noteTitleAsText);
-  localStorage.setItem("noteText", noteTextAsText);
+  localStorage.setItem("noteTitles", noteTitlesAsText);
+  localStorage.setItem("noteTexts", noteTextsAsText);
 }
 
 function load() {
-  let noteTitleAsText = localStorage.getItem("noteTitle");
-  let noteTextAsText = localStorage.getItem("noteText");
+  let noteTitlesAsText = localStorage.getItem("noteTitles");
+  let noteTextsAsText = localStorage.getItem("noteTexts");
 
-  if (noteTitleAsText && noteTextAsText) {
-    noteTitle = JSON.parse(noteTitleAsText);
-    noteText = JSON.parse(noteTextAsText);
+  if (noteTitlesAsText && noteTextsAsText) {
+    noteTitles = JSON.parse(noteTitlesAsText);
+    noteTexts = JSON.parse(noteTextsAsText);
   }
 }

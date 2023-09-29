@@ -282,7 +282,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
   margin-top: 40px;
   margin-bottom: 40px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -304,14 +304,19 @@ body {
   font-size: 18px;
   font-weight: 300;
   font-family: 'Poppins', sans-serif;
-  padding: 9px 0px;
+  height: 30px;
+  /* margin: 10px 0px; */
+}
+
+.margin10 textarea {
+  margin: 10px 0px;
 }
 
 .messageBox1 textarea::placeholder {
   font-size: 18px;
   font-weight: 300;
   font-family: 'Poppins', sans-serif;
-  padding: 9px 0px;
+  padding: 4px 0px;
 }
 
 .messageBtn {

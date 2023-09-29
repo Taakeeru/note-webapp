@@ -9,7 +9,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body onload="renderNote()">
+  <body onload="renderNote()" onclick="newStyle(event); closeMessageBox(event)">
     <header>
       <div class="header">
         <img src="./img/menu.svg" class="header-icons" alt="Icon" />
@@ -18,7 +18,7 @@
           <h1>Notizen</h1>
         </div>
         <div class="header-right">
-          <div class="searchbar" onmouseleave="oldStyle()">
+          <div class="searchbar">
             <button id="searchbarBtn" class="header-button">
               <img src="./img/search.svg" class="header-icons" alt="Icon" />
             </button>
@@ -27,7 +27,6 @@
               placeholder="Suchen"
               id="searchbar"
               class="header-input"
-              onclick="newStyle()"
             />
           </div>
 

@@ -7,16 +7,17 @@ let trashbinNoteTitles = ["test1"];
 let trashbinNoteTexts = ["testtext bla bla"];
 load();
 
-function newStyle() {
-  document.getElementById("searchbarBtn").classList.add("newStyle");
-  document.getElementById("searchbar").classList.add("newStyle");
-  console.log("added");
-}
+function newStyle(event) {
+  let searchbar = document.getElementById("searchbar")
+  let searchbarBtn = document.getElementById("searchbarBtn")
 
-function oldStyle() {
-  document.getElementById("searchbarBtn").classList.remove("newStyle");
-  document.getElementById("searchbar").classList.remove("newStyle");
-  console.log("removed");
+      if(event.target == searchbar || event.target == searchbarBtn) {
+        searchbar.classList.add("newStyle");
+        searchbarBtn.classList.add("newStyle");
+      } else {
+        searchbar.classList.remove("newStyle");
+        searchbarBtn.classList.remove("newStyle");
+      }
 }
 
 function trashbinContent() {
@@ -58,19 +59,22 @@ function addContentToMessageBox() {
   messageBox.classList.add("margin10");
 }
 
-// function removeContentFromMessageBox() {
-//   let messageBox2 = document.getElementById("messageContent");
 
-//   messageBox2.innerHTML = "";
-//   messageBox2.innerHTML += /*html*/ `
-//     <div class="messageBox1" id="messageBox1" onclick="messageBox2()">
-//         <input placeholder="Notiz" id="noteText">
-//     </div>`
-// }
+function closeMessageBox(event) {
+  let addTitle = document.getElementById("addTitle");
+  let addBtn = document.getElementById("addBtn");
+  let messageBox = document.getElementById("messageBox1");
+  let messageText = document.getElementById("noteText");
+  let messageTitle = document.getElementById("noteTitle")
 
-function addCardHover() {}
+      if(event.target !== messageText && event.target !== messageTitle) {
+        addTitle.classList.add("d-none");
+        addBtn.classList.add("d-none");
+        messageBox.classList.remove("margin10");
+      }
+}
 
-function deleteCardHover() {}
+
 
 function renderNote() {
   let content = document.getElementById("content");
@@ -83,7 +87,6 @@ function renderNote() {
         class="messageBox1"
         id="messageBox1"
         onclick="addContentToMessageBox()"
-        onmouseleave="renderNote()"
       >
         <div class="messageTitle d-none" id="addTitle">
           <textarea placeholder="Titel" id="noteTitle"></textarea>
@@ -105,7 +108,7 @@ function renderNote() {
     const noteText = noteTexts[i];
 
     content.innerHTML += /*html*/ `
-        <div class="card" onmouseover="addCardHover()" onmouseout="deleteCardHover()"> <!-- //dran denken für hover effekt!! -->
+        <div class="card"> <!-- //dran denken für hover effekt!! -->
             <div class="cardTitleNote" id="cardTitleNote">
               <b>${noteTitle}</b> <br>
               ${noteText} <br>
@@ -135,7 +138,7 @@ function renderTrashbin() {
     const trashbinNoteText = trashbinNoteTexts[i];
 
     content.innerHTML += /*html*/ `
-        <div class="card" onmouseover="addCardHover()" onmouseout="deleteCardHover()"> <!-- //dran denken für hover effekt!! -->
+        <div class="card"> <!-- //dran denken für hover effekt!! -->
             <div class="cardTitleNote" id="cardTitleNote">
               <b>${trashbinNoteTitle}</b> <br>
               ${trashbinNoteText} <br>
@@ -158,7 +161,7 @@ function addNote() {
   trashbinNoteTitles.splice()
   trashbinNoteTexts.splice()
 
-  renderNote(); //if statment für renderNote oder renderTrashbin
+  renderNote(); 
   save();
 }
 
@@ -170,7 +173,7 @@ function deleteNote(i) {
   noteTexts.splice(i, 1);
   
 
-  renderNote(); //if statment für renderNote oder renderTrashbin
+  renderNote(); 
   save();
 }
 
@@ -197,17 +200,28 @@ function deleteTrashbin() {
 function save() {
   let noteTitlesAsText = JSON.stringify(noteTitles);
   let noteTextsAsText = JSON.stringify(noteTexts);
+  let trashbinNoteTitlesAsText = JSON.stringify(trashbinNoteTitles);
+  let trashbinNoteTextsAsText = JSON.stringify(trashbinNoteTexts);
 
   localStorage.setItem("noteTitles", noteTitlesAsText);
   localStorage.setItem("noteTexts", noteTextsAsText);
+  localStorage.setItem("trashbinNoteTitles", trashbinNoteTitlesAsText);
+  localStorage.setItem("trashbinNoteTexts", trashbinNoteTextsAsText);
 }
 
 function load() {
   let noteTitlesAsText = localStorage.getItem("noteTitles");
   let noteTextsAsText = localStorage.getItem("noteTexts");
+  let trashbinNoteTitlesAsText = localStorage.getItem("trashbinNoteTitles");
+  let trashbinNoteTextsAsText = localStorage.getItem("trashbinNoteTexts");
 
   if (noteTitlesAsText && noteTextsAsText) {
     noteTitles = JSON.parse(noteTitlesAsText);
     noteTexts = JSON.parse(noteTextsAsText);
+  }
+
+  if (trashbinNoteTitlesAsText && trashbinNoteTextsAsText) {
+    trashbinNoteTitles = JSON.parse(trashbinNoteTitlesAsText);
+    trashbinNoteTexts = JSON.parse(trashbinNoteTextsAsText);
   }
 }

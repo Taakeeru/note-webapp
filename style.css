@@ -117,7 +117,6 @@ body {
   background-color: white;
   outline: none;
   box-shadow: 2px 2px 2px 0px rgba(44, 44, 44, 0.3);
-  z-index: 5;
 }
 
 .header input::placeholder {

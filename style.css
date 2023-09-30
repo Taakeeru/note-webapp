@@ -72,6 +72,14 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
+img {
+  cursor: pointer;
+}
+
 .d-none {
   display: none !important;
 }
@@ -111,6 +119,7 @@ body {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   outline: none;
+  font-size: 18px;
 }
 
 .newStyle {
@@ -174,9 +183,17 @@ body {
 }
 
 .header-icons {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
+  border-radius: 20px;
+  padding: 5px;
 }
+
+.header-icons:hover {
+  background-color: #efefef;
+  cursor: pointer;
+}
+
 
 /* Main Section */
 
@@ -236,8 +253,6 @@ body {
 }
 
 .content-container {
-  /* display: flex;
-    flex-direction: column;  */
   width: 80%;
   margin: 0px 40px;
 }
@@ -321,6 +336,21 @@ body {
 .messageBtn {
   display: flex;
   justify-content: end;
+  background-color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.486);
+  padding: 3px 10px;
+}
+
+.messageBtn button {
+  border-radius: 5px;
+}
+
+.messageBtn button:hover {
+  background-color: #efefef;
+  color: rgba(0, 0, 0, 0.712);
 }
 
 .messageBox2 {
@@ -339,37 +369,59 @@ body {
 .content {
   display: flex;
   flex-wrap: wrap;
-  /* width: 100%; */
 }
 
 .card {
-  /* border: 1px outset #efefef; */
   display: flex;
   flex-direction: column;
-  border: 2px solid #f1f3f4;
+  border: 1px solid #00000028;
   border-radius: 8px;
   padding: 8px;
   margin: 10px;
   width: 20%;
-  flex-wrap: wrap;
+  word-wrap: break-word;
+  height: fit-content;
+  box-sizing: border-box;
 }
 
 .card button {
   display: flex;
-  align-items: end;
-  text-align: end;
-  width: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: none;
+  border: none;
+  border-radius: 25px;
+  background-color: white;
+  height: 35px;
+  width: 35px;
 }
 
 .card img {
-  /* display: flex;
-  justify-content: end;
-  align-items: end; */
   height: 25px;
   width: 25px;
+  border-radius: 20px;
+}
+
+.card button:hover {
+  background-color: #efefef;
 }
 
 .card:hover {
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
     0 2px 6px 2px rgba(60, 64, 67, 0.149);
+}
+
+.cardTitle {
+  font-weight: bold;
+  padding: 10px 10px 0px 10px;
+}
+
+.cardNote {
+  padding: 20px 10px  ;
+}
+
+.cardBtn {
+  display: flex;
+  justify-content: end;
+  height: 30px;
 }

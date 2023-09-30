@@ -74,6 +74,17 @@ function closeMessageBox(event) {
       }
 }
 
+function addBtn(i) {
+  let Btn = document.getElementById(`Btn${i}`)
+
+  Btn.classList.remove("d-none")
+}
+
+function removeBtn(i) {
+  let Btn = document.getElementById(`Btn${i}`)
+
+  Btn.classList.add("d-none")
+}
 
 
 function renderNote() {
@@ -108,13 +119,15 @@ function renderNote() {
     const noteText = noteTexts[i];
 
     content.innerHTML += /*html*/ `
-        <div class="card"> <!-- //dran denken für hover effekt!! -->
-            <div class="cardTitleNote" id="cardTitleNote">
-              <b>${noteTitle}</b> <br>
-              ${noteText} <br>
+        <div class="card" onmouseover="addBtn(${i})" onmouseout="removeBtn(${i})"> <!-- //dran denken für hover effekt!! -->
+            <div class="cardTitle" id="cardTitleNote">
+              <span>${noteTitle}</span>
+            </div>
+            <div class="cardNote">
+              <span>${noteText}</span>
             </div>
             <div class="cardBtn" id="cardBtn">
-              <button onclick="deleteNote(${i})"><img src="./img/delete.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
+              <button onclick="deleteNote(${i})" class="d-none" id="Btn${i}"><img src="./img/delete.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
             </div>
         </div>`;
   }
@@ -138,13 +151,15 @@ function renderTrashbin() {
     const trashbinNoteText = trashbinNoteTexts[i];
 
     content.innerHTML += /*html*/ `
-        <div class="card"> <!-- //dran denken für hover effekt!! -->
-            <div class="cardTitleNote" id="cardTitleNote">
-              <b>${trashbinNoteTitle}</b> <br>
-              ${trashbinNoteText} <br>
+        <div class="card" onmouseover="addBtn(${i})" onmouseout="removeBtn(${i})"> <!-- //dran denken für hover effekt!! -->
+            <div class="cardTitle" id="cardTitleNote">
+              <span>${trashbinNoteTitle}</span>
+            </div>
+            <div class="cardNote">
+              <span>${trashbinNoteText}</span>
             </div>
             <div class="cardBtn" id="cardBtn">
-              <button onclick="restoreNote(${i})"><img src="./img/shift.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
+              <button onclick="restoreNote(${i})" class="d-none" id="Btn${i}"><img src="./img/shift.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
             </div>
         </div>`;
   }  

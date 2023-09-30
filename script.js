@@ -29,8 +29,7 @@ function trashbinContent() {
   document.getElementById("note").classList.remove("sideBarStyle");
   document.getElementById("note").classList.add("note");
 
-  logoTitle.innerHTML = "";
-  logoTitle.innerHTML += /*html*/ `
+  logoTitle.innerHTML = /*html*/ `
         <img src="./img/delete.svg" class="header-logo" alt="Logo" />
         <h1>Papierkorb</h1>`;
 }
@@ -43,8 +42,7 @@ function noteContent() {
   document.getElementById("trashbin").classList.remove("sideBarStyle");
   document.getElementById("trashbin").classList.add("trashbin");
 
-  logoTitle.innerHTML = "";
-  logoTitle.innerHTML += /*html*/ `
+  logoTitle.innerHTML = /*html*/ `
         <img src="./img/logo.PNG" class="header-logo" alt="Logo" />
         <h1>Notizen</h1>`;
 }
@@ -92,8 +90,7 @@ function renderNote() {
   let messageContent = document.getElementById("messageContent");
 
   content.innerHTML = "";
-  messageContent.innerHTML = "";
-  messageContent.innerHTML += /*html*/ `
+  messageContent.innerHTML = /*html*/ `
       <div
         class="messageBox1"
         id="messageBox1"
@@ -126,7 +123,7 @@ function renderNote() {
             <div class="cardNote">
               <span>${noteText}</span>
             </div>
-            <div class="cardBtn" id="cardBtn">
+            <div class="cardBtn">
               <button onclick="deleteNote(${i})" class="d-none" id="Btn${i}"><img src="./img/delete.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
             </div>
         </div>`;
@@ -139,8 +136,7 @@ function renderTrashbin() {
   let messageContent = document.getElementById("messageContent");
 
   content.innerHTML = "";
-  messageContent.innerHTML = "";
-  messageContent.innerHTML += /*html*/ `
+  messageContent.innerHTML = /*html*/ `
     <div class="clearTrashbin">
       <span>Notizen im Papierkorb werden nach sieben Tagen gelöscht.</span>
       <button id="clearTrashbin" onclick="deleteTrashbin()">Papierkorb leeren</button>
@@ -158,7 +154,7 @@ function renderTrashbin() {
             <div class="cardNote">
               <span>${trashbinNoteText}</span>
             </div>
-            <div class="cardBtn" id="cardBtn">
+            <div class="cardBtn">
               <button onclick="restoreNote(${i})" class="d-none" id="Btn${i}"><img src="./img/shift.svg" alt=""></button> <!--//funktion fürs löschen und zu trashbin zufügen ändern!! -->
             </div>
         </div>`;

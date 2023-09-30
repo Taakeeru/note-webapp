@@ -170,11 +170,12 @@ function addNote() {
   let noteTitle = document.getElementById("noteTitle");
   let noteText = document.getElementById("noteText");
 
-  noteTitles.push(noteTitle.value);
-  noteTexts.push(noteText.value);
-
-  trashbinNoteTitles.splice()
-  trashbinNoteTexts.splice()
+  if (noteTitle.value !== "" || noteText.value !== "") {
+    noteTitles.push(noteTitle.value);
+    noteTexts.push(noteText.value);
+  } else {
+    alert("Bitte Titel und/oder Notiz eingeben.")
+  }
 
   renderNote(); 
   save();
@@ -206,9 +207,11 @@ function restoreNote(i) {
 function deleteTrashbin() {
   let content = document.getElementById("content");
 
-  content.innerHTML = "";
-  return trashbinNoteTitles = [],
-         trashbinNoteTexts = []
+    content.innerHTML = "";
+    trashbinNoteTitles = [],
+    trashbinNoteTexts = []
+    
+  save()
 }
 
 

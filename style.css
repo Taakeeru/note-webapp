@@ -370,7 +370,6 @@ img {
   width: 250px;
   word-wrap: break-word;
   height: fit-content;
-  box-sizing: border-box;
 }
 
 .card button {
